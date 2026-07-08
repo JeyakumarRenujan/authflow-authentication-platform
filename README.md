@@ -206,7 +206,7 @@ Users
 
 ### Home Page
 
-![alt text](Home Page.png)
+![alt text](HomePage.png)
 
 
 ### Dashboard
@@ -216,7 +216,7 @@ Users
 
 ### Admin Panel
 
-![alt text](Admin Panel.png)
+![alt text](AdminPanel.png)
 
 
 
