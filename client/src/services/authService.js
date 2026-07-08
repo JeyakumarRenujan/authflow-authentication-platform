@@ -46,3 +46,23 @@ export const removeUser = async (id) => {
 
   return response.data;
 };
+
+// update profile
+export const updateProfile = async (data) => {
+  const response = await API.put(
+    "/users/profile",
+    data
+  );
+
+  return response.data;
+};
+
+// change password
+export const changePassword = async (data) => {
+  const response = await API.put(
+    "/users/change-password",
+    data
+  );
+
+  return response.data;
+};

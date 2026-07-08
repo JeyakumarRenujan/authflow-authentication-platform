@@ -57,6 +57,13 @@ function Sidebar() {
           Profile
         </Link>
 
+        <Link
+          to="/settings"
+          className="block text-slate-700"
+        >
+          Settings
+        </Link>
+
         {user?.role === "admin" && (
           <Link
             to="/users"
