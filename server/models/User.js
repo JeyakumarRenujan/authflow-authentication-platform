@@ -98,10 +98,10 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre(
     "save",
-    async function(next){
+    async function(){
 
         if(!this.isModified("password")){
-            next();
+            return;
         }
 
 
@@ -115,11 +115,7 @@ userSchema.pre(
             salt
         );
 
-
-        next();
-
     }
-
 );
 
 
