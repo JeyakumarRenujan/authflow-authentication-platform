@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
+import NotFound from "./pages/NotFound";
 
 import AdminRoute from "./components/AdminRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -73,6 +74,11 @@ function App() {
               <Settings />
             </ProtectedRoute>
           }
+        />
+
+        <Route
+          path="*"
+          element={<NotFound />}
         />
       </Routes>
     </>

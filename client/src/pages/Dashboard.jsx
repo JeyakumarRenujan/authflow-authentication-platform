@@ -15,13 +15,19 @@ function Dashboard() {
 
       <div className="grid md:grid-cols-3 gap-6">
         <Card>
-          <h2 className="font-semibold">
-            Welcome
+          <h2 className="text-slate-500">
+            Logged User
           </h2>
 
-          <p className="text-slate-500 mt-2">
+          <h1
+            className="
+              text-2xl
+              font-bold
+              mt-3
+            "
+          >
             {user?.name}
-          </p>
+          </h1>
         </Card>
 
         <Card>

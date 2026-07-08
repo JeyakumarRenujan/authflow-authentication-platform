@@ -1,7 +1,16 @@
 import {
   Link,
+  useLocation,
   useNavigate,
 } from "react-router-dom";
+
+import {
+  FiHome,
+  FiUser,
+  FiSettings,
+  FiUsers,
+  FiLogOut,
+} from "react-icons/fi";
 
 import { useAuth } from "../context/AuthContext";
 
@@ -13,22 +22,40 @@ function Sidebar() {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const handleLogout = () => {
     logout();
 
     navigate("/login");
   };
 
+  const navStyle = (path) =>
+    `
+      flex
+      items-center
+      gap-3
+      px-4
+      py-3
+      rounded-lg
+      transition
+
+      ${
+        location.pathname === path
+          ? "bg-blue-600 text-white"
+          : "text-slate-600 hover:bg-slate-100"
+      }
+    `;
+
   return (
-    <div
+    <aside
       className="
         w-64
+        min-h-screen
         bg-white
         border-r
         border-slate-200
         p-6
-        hidden
-        md:block
       "
     >
       <h1
@@ -42,33 +69,41 @@ function Sidebar() {
         AuthFlow
       </h1>
 
-      <nav className="space-y-4">
+      <nav className="space-y-3">
         <Link
+          className={navStyle("/dashboard")}
           to="/dashboard"
-          className="block text-slate-700"
         >
+          <FiHome />
+
           Dashboard
         </Link>
 
         <Link
+          className={navStyle("/profile")}
           to="/profile"
-          className="block text-slate-700"
         >
+          <FiUser />
+
           Profile
         </Link>
 
         <Link
+          className={navStyle("/settings")}
           to="/settings"
-          className="block text-slate-700"
         >
+          <FiSettings />
+
           Settings
         </Link>
 
         {user?.role === "admin" && (
           <Link
+            className={navStyle("/users")}
             to="/users"
-            className="block text-slate-700"
           >
+            <FiUsers />
+
             Users
           </Link>
         )}
@@ -76,14 +111,22 @@ function Sidebar() {
         <button
           onClick={handleLogout}
           className="
+            flex
+            items-center
+            gap-3
+            px-4
+            py-3
             text-red-500
+            w-full
             mt-10
           "
         >
+          <FiLogOut />
+
           Logout
         </button>
       </nav>
-    </div>
+    </aside>
   );
 }
 
