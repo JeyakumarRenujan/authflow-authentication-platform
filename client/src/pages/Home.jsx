@@ -11,43 +11,96 @@ function Home() {
   return (
     <div
       className="
+        relative
         min-h-screen
+        overflow-hidden
         bg-gradient-to-br
-        from-slate-50
-        via-white
-        to-blue-50
+        from-[#CCFBF1]
+        via-[#EEF2FF]
+        to-[#F3E8FF]
       "
     >
+      {/* Background Decorations */}
+
+      <motion.div
+        animate={{
+          y: [0, -30, 0],
+          x: [0, 20, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 8,
+        }}
+        className="
+          absolute
+          top-20
+          left-20
+          w-72
+          h-72
+          bg-[#14B8A6]/25
+          rounded-full
+          blur-3xl
+        "
+      />
+
+      <motion.div
+        animate={{
+          y: [0, 40, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 10,
+        }}
+        className="
+          absolute
+          bottom-10
+          right-20
+          w-96
+          h-96
+          bg-[#A855F7]/25
+          rounded-full
+          blur-3xl
+        "
+      />
+
       {/* Navbar */}
 
       <nav
         className="
+          relative
+          z-10
           max-w-7xl
           mx-auto
           px-6
-          py-6
+          py-7
           flex
-          items-center
           justify-between
+          items-center
         "
       >
         <div
           className="
-            text-2xl
-            font-bold
-            text-blue-600
+            text-3xl
+            font-extrabold
+            bg-gradient-to-r
+            from-[#14B8A6]
+            via-[#6366F1]
+            to-[#A855F7]
+            bg-clip-text
+            text-transparent
           "
         >
           AuthFlow
         </div>
 
-        <div className="flex gap-4 items-center">
+        <div className="flex items-center gap-5">
           <Link
             to="/login"
             className="
-              text-slate-600
-              hover:text-blue-600
-              font-medium
+              font-semibold
+              text-slate-700
+              hover:text-[#6366F1]
+              transition
             "
           >
             Login
@@ -56,13 +109,18 @@ function Home() {
           <Link
             to="/register"
             className="
-              bg-blue-600
-              hover:bg-blue-700
+              px-6
+              py-3
+              rounded-2xl
               text-white
-              px-5
-              py-2.5
-              rounded-xl
-              shadow-sm
+              font-semibold
+              bg-gradient-to-r
+              from-[#14B8A6]
+              via-[#6366F1]
+              to-[#A855F7]
+              shadow-xl
+              shadow-indigo-200
+              hover:-translate-y-1
               transition
             "
           >
@@ -71,55 +129,68 @@ function Home() {
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* Hero Section */}
 
       <section
         className="
+          relative
+          z-10
           max-w-7xl
           mx-auto
           px-6
           grid
           md:grid-cols-2
-          gap-12
+          gap-16
           items-center
           min-h-[80vh]
         "
       >
+        {/* Left */}
+
         <motion.div
           initial={{
             opacity: 0,
-            y: 30,
+            y: 40,
           }}
           animate={{
             opacity: 1,
             y: 0,
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.7,
           }}
         >
-          <span
+          <div
             className="
-              inline-block
-              mb-5
-              px-4
-              py-2
+              inline-flex
+              items-center
+              mb-8
+              px-5
+              py-3
               rounded-full
-              bg-blue-100
-              text-blue-600
-              font-medium
+              bg-white/50
+              backdrop-blur-xl
+              shadow-lg
+              text-[#14B8A6]
+              font-semibold
             "
           >
             Secure User Management
-          </span>
+          </div>
 
           <h1
             className="
-              text-5xl
-              md:text-6xl
-              font-bold
+              text-6xl
+              md:text-7xl
+              font-black
               leading-tight
-              text-slate-900
+              bg-gradient-to-r
+              from-[#14B8A6]
+              via-[#6366F1]
+              to-[#A855F7]
+              bg-clip-text
+              text-transparent
+              drop-shadow-sm
             "
           >
             Authentication
@@ -129,34 +200,34 @@ function Home() {
 
           <p
             className="
-              mt-6
+              mt-8
               text-lg
-              text-slate-600
               leading-relaxed
+              max-w-xl
+              text-slate-600
             "
           >
             A complete authentication platform with JWT security,
             role based access control and modern user management.
           </p>
 
-          <div
-            className="
-              flex
-              gap-4
-              mt-8
-            "
-          >
+          <div className="flex gap-5 mt-10">
             <Link
               to="/register"
               className="
-                bg-blue-600
+                px-8
+                py-4
+                rounded-2xl
                 text-white
-                px-7
-                py-3
-                rounded-xl
-                font-medium
-                shadow-md
-                hover:bg-blue-700
+                font-bold
+                bg-gradient-to-r
+                from-[#14B8A6]
+                via-[#6366F1]
+                to-[#A855F7]
+                shadow-xl
+                shadow-indigo-200
+                hover:scale-105
+                transition
               "
             >
               Create Account
@@ -165,13 +236,17 @@ function Home() {
             <Link
               to="/login"
               className="
-                px-7
-                py-3
-                rounded-xl
-                font-medium
+                px-8
+                py-4
+                rounded-2xl
+                bg-white/50
+                backdrop-blur-xl
                 border
-                border-slate-300
+                border-white
+                font-bold
+                shadow-lg
                 hover:bg-white
+                transition
               "
             >
               Sign In
@@ -179,31 +254,32 @@ function Home() {
           </div>
         </motion.div>
 
-        {/* Right Card */}
+        {/* Right Glass Card */}
 
         <motion.div
           initial={{
             opacity: 0,
-            scale: 0.95,
+            scale: 0.9,
           }}
           animate={{
             opacity: 1,
             scale: 1,
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.7,
           }}
           className="
-            bg-white/70
-            backdrop-blur
-            rounded-3xl
-            shadow-xl
+            relative
+            bg-white/45
+            backdrop-blur-2xl
+            rounded-[2rem]
             border
-            border-white
-            p-8
+            border-white/70
+            shadow-2xl
+            p-10
           "
         >
-          <div className="space-y-6">
+          <div className="space-y-8">
             <Feature
               icon={<FiShield />}
               title="JWT Protection"
@@ -237,32 +313,47 @@ function Feature({
     <div
       className="
         flex
-        gap-5
-        items-start
+        items-center
+        gap-6
+        border-b
+        last:border-none
+        border-white/50
+        pb-7
       "
     >
       <div
         className="
-          text-blue-600
-          bg-blue-100
-          p-3
-          rounded-xl
-          text-xl
+          w-16
+          h-16
+          flex
+          items-center
+          justify-center
+          rounded-2xl
+          bg-white/70
+          text-3xl
+          text-[#14B8A6]
+          shadow-lg
         "
       >
         {icon}
       </div>
 
       <div>
-        <h3 className="font-semibold">
+        <h3
+          className="
+            text-lg
+            font-bold
+            text-slate-900
+          "
+        >
           {title}
         </h3>
 
         <p
           className="
-            text-slate-500
+            mt-2
             text-sm
-            mt-1
+            text-slate-500
           "
         >
           {text}
