@@ -270,3 +270,126 @@ export const deleteAccount = async(req,res)=>{
     }
 
 };
+
+
+// @desc Admin get all users
+// @route GET /api/users
+
+
+export const getAllUsers = async(req,res)=>{
+
+
+    try{
+
+
+        const users =
+        await User.find();
+
+
+
+        res.json({
+
+            success:true,
+
+            count:users.length,
+
+            users
+
+        });
+
+
+
+    }
+
+    catch(error){
+
+
+        res.status(500)
+        .json({
+
+            success:false,
+
+            message:error.message
+
+        });
+
+
+    }
+
+};
+
+
+
+
+
+
+// @desc Admin delete any user
+// @route DELETE /api/users/:id
+
+
+
+export const deleteUser = async(req,res)=>{
+
+
+    try{
+
+
+        const user =
+        await User.findById(
+            req.params.id
+        );
+
+
+
+        if(!user){
+
+
+            return res.status(404)
+            .json({
+
+                success:false,
+
+                message:
+                "User not found"
+
+            });
+
+
+        }
+
+
+
+        await user.deleteOne();
+
+
+
+        res.json({
+
+            success:true,
+
+            message:
+            "User removed"
+
+        });
+
+
+
+    }
+
+
+    catch(error){
+
+
+        res.status(500)
+        .json({
+
+            success:false,
+
+            message:error.message
+
+        });
+
+    }
+
+
+};

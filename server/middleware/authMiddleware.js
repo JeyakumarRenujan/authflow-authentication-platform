@@ -3,64 +3,83 @@ import User from "../models/User.js";
 
 
 
-const protect = async(req,res,next)=>{
+// Protect routes - verify JWT token
+
+const protect = async (req, res, next) => {
 
 
     let token;
 
 
-
-    if(
+    if (
         req.headers.authorization &&
         req.headers.authorization.startsWith("Bearer")
-    ){
+    ) {
 
 
-        try{
+        try {
 
 
             token =
-            req.headers.authorization.split(" ")[1];
+                req.headers.authorization.split(" ")[1];
 
 
 
             const decoded =
-            jwt.verify(
+                jwt.verify(
 
-                token,
+                    token,
 
-                process.env.JWT_SECRET
+                    process.env.JWT_SECRET
 
-            );
-
+                );
 
 
 
             req.user =
-            await User.findById(
-                decoded.id
-            );
+                await User.findById(
+                    decoded.id
+                );
 
 
 
-            next();
+            if (!req.user) {
+
+
+                return res.status(404)
+                    .json({
+
+                        success: false,
+
+                        message:
+                            "User not found"
+
+                    });
+
+
+            }
+
+
+
+            return next();
+
 
 
         }
 
 
-        catch(error){
+        catch (error) {
 
 
             return res.status(401)
-            .json({
+                .json({
 
-                success:false,
+                    success: false,
 
-                message:
-                "Not authorized"
+                    message:
+                        "Not authorized, token failed"
 
-            });
+                });
 
 
         }
@@ -70,23 +89,61 @@ const protect = async(req,res,next)=>{
 
 
 
-    if(!token){
+    if (!token) {
 
 
         return res.status(401)
-        .json({
+            .json({
 
-            success:false,
+                success: false,
 
-            message:
-            "No token found"
+                message:
+                    "No token found"
 
-        });
+            });
+
 
     }
 
 
 };
+
+
+
+
+
+// Admin middleware
+
+export const admin = (req, res, next) => {
+
+
+
+    if (
+        req.user &&
+        req.user.role === "admin"
+    ) {
+
+
+        return next();
+
+
+    }
+
+
+
+    return res.status(403)
+        .json({
+
+            success: false,
+
+            message:
+                "Admin access only"
+
+        });
+
+
+};
+
 
 
 

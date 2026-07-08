@@ -7,6 +7,8 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/database.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import limiter from "./middleware/rateLimiter.js";
+import {errorHandler} from "./middleware/errorMiddleware.js";
 
 dotenv.config();
 
@@ -15,6 +17,8 @@ connectDB();
 const app = express();
 
 app.use(helmet());
+
+app.use(limiter);
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -48,6 +52,10 @@ app.use(
 app.use(
     "/api/users",
     userRoutes
+);
+
+app.use(
+    errorHandler
 );
 
 app.listen(PORT, () => {

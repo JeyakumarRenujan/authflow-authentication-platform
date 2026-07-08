@@ -6,14 +6,16 @@ import {
 getProfile,
 updateProfile,
 changePassword,
-deleteAccount
+deleteAccount,
+getAllUsers,
+deleteUser
 
 }
 
 from "../controllers/userController.js";
 
 
-import protect 
+import protect, {admin}
 from "../middleware/authMiddleware.js";
 
 
@@ -51,6 +53,26 @@ router.delete(
     "/delete",
     protect,
     deleteAccount
+);
+
+
+// Admin routes
+
+
+router.get(
+    "/",
+    protect,
+    admin,
+    getAllUsers
+);
+
+
+
+router.delete(
+    "/:id",
+    protect,
+    admin,
+    deleteUser
 );
 
 
