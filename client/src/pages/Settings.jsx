@@ -69,13 +69,46 @@ function Settings() {
 
   return (
     <DashboardLayout>
-      <h1 className="text-3xl font-bold mb-6">
+      <h1
+        className="
+          text-3xl
+          font-black
+          mb-6
+          bg-gradient-to-r
+          from-[#14B8A6]
+          via-[#6366F1]
+          to-[#A855F7]
+          bg-clip-text
+          text-transparent
+        "
+      >
         Settings
       </h1>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <Card>
-          <h2 className="font-semibold mb-5">
+      <div
+        className="
+          grid
+          md:grid-cols-2
+          gap-6
+        "
+      >
+        <Card
+          className="
+            bg-white/45
+            backdrop-blur-2xl
+            border
+            border-white/70
+            shadow-2xl
+            rounded-[2rem]
+          "
+        >
+          <h2
+            className="
+              font-bold
+              mb-5
+              text-slate-900
+            "
+          >
             Update Profile
           </h2>
 
@@ -113,8 +146,23 @@ function Settings() {
           </form>
         </Card>
 
-        <Card>
-          <h2 className="font-semibold mb-5">
+        <Card
+          className="
+            bg-white/45
+            backdrop-blur-2xl
+            border
+            border-white/70
+            shadow-2xl
+            rounded-[2rem]
+          "
+        >
+          <h2
+            className="
+              font-bold
+              mb-5
+              text-slate-900
+            "
+          >
             Security
           </h2>
 

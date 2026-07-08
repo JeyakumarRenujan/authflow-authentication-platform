@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { motion } from "framer-motion";
+
 import { useAuth } from "../context/AuthContext";
 
 import toast from "react-hot-toast";
 
-import Card from "../components/ui/Card";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 
@@ -30,11 +31,6 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(
-      "Register button clicked",
-      form
-    );
-
     try {
       await registerUser(form);
 
@@ -46,8 +42,6 @@ function Register() {
         "/dashboard"
       );
     } catch (error) {
-      console.log(error);
-
       toast.error(
         error.response?.data?.message ||
           "Registration failed"
@@ -58,25 +52,101 @@ function Register() {
   return (
     <div
       className="
+        relative
         min-h-screen
+        overflow-hidden
         flex
         items-center
         justify-center
-        bg-slate-50
-        px-4
+        px-5
+        bg-gradient-to-br
+        from-[#CCFBF1]
+        via-[#EEF2FF]
+        to-[#F3E8FF]
       "
     >
-      <Card
+      {/* background decoration */}
+
+      <motion.div
+        animate={{
+          y: [0, -30, 0],
+          x: [0, 20, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 8,
+        }}
         className="
+          absolute
+          top-20
+          left-20
+          w-72
+          h-72
+          bg-[#14B8A6]/25
+          rounded-full
+          blur-3xl
+        "
+      />
+
+      <motion.div
+        animate={{
+          y: [0, 40, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 10,
+        }}
+        className="
+          absolute
+          bottom-10
+          right-20
+          w-96
+          h-96
+          bg-[#A855F7]/25
+          rounded-full
+          blur-3xl
+        "
+      />
+
+      {/* Register Card */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 40,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+        }}
+        className="
+          relative
+          z-10
           w-full
           max-w-md
+          bg-white/45
+          backdrop-blur-2xl
+          border
+          border-white/70
+          rounded-[2rem]
+          shadow-2xl
+          p-10
         "
       >
         <h1
           className="
-            text-3xl
-            font-bold
+            text-4xl
+            font-black
             text-center
+            bg-gradient-to-r
+            from-[#14B8A6]
+            via-[#6366F1]
+            to-[#A855F7]
+            bg-clip-text
+            text-transparent
           "
         >
           Create Account
@@ -85,18 +155,18 @@ function Register() {
         <p
           className="
             text-center
-            text-slate-500
-            mt-2
+            text-slate-600
+            mt-3
           "
         >
-          Start using AuthFlow today
+          Start your secure AuthFlow journey
         </p>
 
         <form
           onSubmit={handleSubmit}
           className="
-            mt-8
-            space-y-5
+            mt-10
+            space-y-6
           "
         >
           <Input
@@ -132,24 +202,29 @@ function Register() {
         <p
           className="
             text-center
-            mt-6
+            mt-8
             text-sm
+            text-slate-600
           "
         >
           Already have an account?
 
           <Link
-            className="
-              text-blue-600
-              font-medium
-              ml-1
-            "
             to="/login"
+            className="
+              ml-2
+              font-bold
+              bg-gradient-to-r
+              from-[#14B8A6]
+              to-[#6366F1]
+              bg-clip-text
+              text-transparent
+            "
           >
             Login
           </Link>
         </p>
-      </Card>
+      </motion.div>
     </div>
   );
 }

@@ -27,58 +27,85 @@ function Sidebar() {
   const handleLogout = () => {
     logout();
 
-    setTimeout(()=>{
-        navigate("/");
-    },0);
-
-    
+    setTimeout(() => {
+      navigate("/");
+    }, 0);
   };
 
   const navStyle = (path) =>
     `
       flex
       items-center
-      gap-3
-      px-4
-      py-3
-      rounded-lg
-      transition
+      gap-4
+      px-5
+      py-3.5
+      rounded-2xl
+      font-semibold
+      transition-all
+      duration-300
 
       ${
         location.pathname === path
-          ? "bg-blue-600 text-white"
-          : "text-slate-600 hover:bg-slate-100"
+          ? `
+              text-white
+              bg-gradient-to-r
+              from-[#14B8A6]
+              via-[#6366F1]
+              to-[#A855F7]
+              shadow-lg
+              shadow-indigo-200
+            `
+          : `
+              text-slate-600
+              hover:bg-white/60
+              hover:shadow-md
+            `
       }
     `;
 
   return (
     <aside
       className="
-        w-64
+        w-72
         min-h-screen
-        bg-white
+        bg-white/45
+        backdrop-blur-2xl
         border-r
-        border-slate-200
-        p-6
+        border-white/70
+        shadow-2xl
+        p-7
       "
     >
+      {/* Logo */}
+
       <h1
         className="
-          text-2xl
-          font-bold
-          text-blue-600
-          mb-10
+          text-3xl
+          font-black
+          mb-12
+          bg-gradient-to-r
+          from-[#14B8A6]
+          via-[#6366F1]
+          to-[#A855F7]
+          bg-clip-text
+          text-transparent
         "
       >
         AuthFlow
       </h1>
 
-      <nav className="space-y-3">
+      {/* Navigation */}
+
+      <nav
+        className="
+          space-y-4
+        "
+      >
         <Link
           className={navStyle("/dashboard")}
           to="/dashboard"
         >
-          <FiHome />
+          <FiHome size={20} />
 
           Dashboard
         </Link>
@@ -87,7 +114,7 @@ function Sidebar() {
           className={navStyle("/profile")}
           to="/profile"
         >
-          <FiUser />
+          <FiUser size={20} />
 
           Profile
         </Link>
@@ -96,7 +123,7 @@ function Sidebar() {
           className={navStyle("/settings")}
           to="/settings"
         >
-          <FiSettings />
+          <FiSettings size={20} />
 
           Settings
         </Link>
@@ -106,7 +133,7 @@ function Sidebar() {
             className={navStyle("/users")}
             to="/users"
           >
-            <FiUsers />
+            <FiUsers size={20} />
 
             Users
           </Link>
@@ -117,15 +144,19 @@ function Sidebar() {
           className="
             flex
             items-center
-            gap-3
-            px-4
-            py-3
-            text-red-500
+            gap-4
+            px-5
+            py-3.5
+            mt-12
             w-full
-            mt-10
+            rounded-2xl
+            text-red-500
+            font-semibold
+            hover:bg-red-50
+            transition
           "
         >
-          <FiLogOut />
+          <FiLogOut size={20} />
 
           Logout
         </button>

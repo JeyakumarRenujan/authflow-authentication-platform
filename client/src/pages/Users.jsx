@@ -64,14 +64,29 @@ function Users() {
       <h1
         className="
           text-3xl
-          font-bold
+          font-black
           mb-6
+          bg-gradient-to-r
+          from-[#14B8A6]
+          via-[#6366F1]
+          to-[#A855F7]
+          bg-clip-text
+          text-transparent
         "
       >
         Users Management
       </h1>
 
-      <Card>
+      <Card
+        className="
+          bg-white/45
+          backdrop-blur-2xl
+          border
+          border-white/70
+          shadow-2xl
+          rounded-[2rem]
+        "
+      >
         <div
           className="
             overflow-x-auto
@@ -87,6 +102,8 @@ function Users() {
               <tr
                 className="
                   border-b
+                  border-white/60
+                  text-slate-700
                 "
               >
                 <th className="py-3">
@@ -111,9 +128,21 @@ function Users() {
               {users.map((user) => (
                 <tr
                   key={user._id}
-                  className="border-b"
+                  className="
+                    border-b
+                    border-white/50
+                    text-slate-600
+                    hover:bg-white/40
+                    transition
+                  "
                 >
-                  <td className="py-3">
+                  <td
+                    className="
+                      py-4
+                      font-medium
+                      text-slate-800
+                    "
+                  >
                     {user.name}
                   </td>
 
@@ -124,12 +153,15 @@ function Users() {
                   <td>
                     <span
                       className="
-                        px-3
-                        py-1
-                        bg-blue-100
-                        text-blue-600
+                        px-4
+                        py-1.5
                         rounded-full
                         text-sm
+                        font-bold
+                        bg-gradient-to-r
+                        from-[#14B8A6]/20
+                        to-[#6366F1]/20
+                        text-[#6366F1]
                       "
                     >
                       {user.role}
@@ -139,11 +171,18 @@ function Users() {
                   <td>
                     <button
                       onClick={() =>
-                        deleteHandler(user._id)
+                        deleteHandler(
+                          user._id
+                        )
                       }
                       className="
+                        px-4
+                        py-2
+                        rounded-xl
                         text-red-500
-                        font-medium
+                        font-semibold
+                        hover:bg-red-50
+                        transition
                       "
                     >
                       Delete
