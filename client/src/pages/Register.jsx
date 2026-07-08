@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useAuth } from "../context/AuthContext";
+
+import toast from "react-hot-toast";
 
 import Card from "../components/ui/Card";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 
 function Register() {
+  const { registerUser } = useAuth();
+
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -17,6 +25,34 @@ function Register() {
       ...form,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(
+      "Register button clicked",
+      form
+    );
+
+    try {
+      await registerUser(form);
+
+      toast.success(
+        "Account created successfully"
+      );
+
+      navigate(
+        "/dashboard"
+      );
+    } catch (error) {
+      console.log(error);
+
+      toast.error(
+        error.response?.data?.message ||
+          "Registration failed"
+      );
+    }
   };
 
   return (
@@ -57,6 +93,7 @@ function Register() {
         </p>
 
         <form
+          onSubmit={handleSubmit}
           className="
             mt-8
             space-y-5
@@ -87,7 +124,7 @@ function Register() {
             onChange={handleChange}
           />
 
-          <Button>
+          <Button type="submit">
             Register
           </Button>
         </form>

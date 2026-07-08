@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 function Button({
   children,
-  type = "button",
+  type = "submit",
   onClick,
   loading = false,
   className = "",

@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -6,22 +7,26 @@ import Register from "./pages/Register";
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Home />}
-      />
+    <>
+      <Toaster position="top-right" />
 
-      <Route
-        path="/login"
-        element={<Login />}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-      <Route
-        path="/register"
-        element={<Register />}
-      />
-    </Routes>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+      </Routes>
+    </>
   );
 }
 

@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useAuth } from "../context/AuthContext";
+
+import toast from "react-hot-toast";
 
 import Card from "../components/ui/Card";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 
 function Login() {
+  const { loginUser } = useAuth();
+
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -16,6 +24,26 @@ function Login() {
       ...form,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await loginUser(form);
+
+      toast.success(
+        "Login successful"
+      );
+
+      navigate(
+        "/dashboard"
+      );
+    } catch (error) {
+      toast.error(
+        error.response.data.message
+      );
+    }
   };
 
   return (
@@ -56,6 +84,7 @@ function Login() {
         </p>
 
         <form
+          onSubmit={handleSubmit}
           className="
             mt-8
             space-y-5
