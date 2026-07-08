@@ -27,7 +27,11 @@ function Sidebar() {
   const handleLogout = () => {
     logout();
 
-    navigate("/login");
+    setTimeout(()=>{
+        navigate("/");
+    },0);
+
+    
   };
 
   const navStyle = (path) =>
