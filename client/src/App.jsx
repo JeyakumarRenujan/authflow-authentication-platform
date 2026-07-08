@@ -1,26 +1,36 @@
-function App(){
+import { Routes, Route } from "react-router-dom";
 
+function App() {
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <h1 className="text-3xl">
+            Home
+          </h1>
+        }
+      />
 
-return (
+      <Route
+        path="/login"
+        element={
+          <h1>
+            Login
+          </h1>
+        }
+      />
 
-<div className="min-h-screen flex items-center justify-center">
-
-
-<h1 className="text-4xl font-bold text-blue-600">
-
-AuthFlow
-
-</h1>
-
-
-</div>
-
-
-)
-
-
+      <Route
+        path="/register"
+        element={
+          <h1>
+            Register
+          </h1>
+        }
+      />
+    </Routes>
+  );
 }
-
-
 
 export default App;
