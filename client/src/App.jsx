@@ -1,33 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 function App() {
   return (
     <Routes>
       <Route
         path="/"
-        element={
-          <h1 className="text-3xl">
-            Home
-          </h1>
-        }
+        element={<Home />}
       />
 
       <Route
         path="/login"
-        element={
-          <h1>
-            Login
-          </h1>
-        }
+        element={<Login />}
       />
 
       <Route
         path="/register"
-        element={
-          <h1>
-            Register
-          </h1>
-        }
+        element={<Register />}
       />
     </Routes>
   );

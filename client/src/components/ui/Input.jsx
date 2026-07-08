@@ -1,5 +1,6 @@
 function Input({
   label,
+  name,
   type = "text",
   value,
   onChange,
@@ -18,6 +19,7 @@ function Input({
       </label>
 
       <input
+        name={name}
         type={type}
         value={value}
         onChange={onChange}
