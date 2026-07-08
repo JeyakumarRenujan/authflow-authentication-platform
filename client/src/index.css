@@ -1,24 +1,18 @@
 @import "tailwindcss";
 
-
-*{
-
-  box-sizing:border-box;
-
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
 
-body{
+  background: #F8FAFC;
 
-  margin:0;
-
-  background:#F8FAFC;
-
-  color:#0F172A;
+  color: #0F172A;
 
   font-family:
-  Inter,
-  system-ui,
-  sans-serif;
-
+    Inter,
+    system-ui,
+    sans-serif;
 }
