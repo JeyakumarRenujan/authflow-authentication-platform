@@ -42,7 +42,8 @@ function Login() {
       );
     } catch (error) {
       toast.error(
-        error.response.data.message
+        error.response?.data?.message ||
+          "Login failed"
       );
     }
   };
