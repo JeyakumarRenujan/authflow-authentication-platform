@@ -78,7 +78,7 @@ function DashboardLayout({ children }) {
                     md:hidden
                     fixed
                     top-5
-                    left-5
+                    right-5
                     z-50
                     p-3
                     rounded-2xl
@@ -87,6 +87,8 @@ function DashboardLayout({ children }) {
                     shadow-lg
                     text-2xl
                     text-[#14B8A6]
+                    hover:scale-105
+                    transition
                 "
             >
                 <FiMenu />
